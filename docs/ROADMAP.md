@@ -16,6 +16,10 @@ promotion, Kubernetes executors, GitLab CI). What he has not done himself — an
 about in interviews — is: Spark at scale, managed cloud ML pipelines (Vertex AI), and *operating*
 a model in production (monitoring, drift, alerts, rollout/rollback, incidents).
 
+His production work (pathotech, digital pathology) is proprietary and cannot be shown publicly.
+This repo is therefore his **public showcase**: the place where a reviewer can actually read the
+code behind the experience on his CV.
+
 **What a reviewer should conclude in 5 minutes:** "this person has run an ML system in production,
 not just trained a model."
 
@@ -30,8 +34,8 @@ not just trained a model."
 - One LinkedIn post per completed phase, tying what was built to the book chapter behind it.
 
 **Non-goals**
-- GenAI / agents (covered by Diego's other project). Explainability here is classical (SHAP,
-  reason codes).
+- GenAI / agents **inside the 90-day box** (M0–M3). Explainability there is classical (SHAP,
+  reason codes). An explanation agent comes later, as the optional extension M5.
 - Deep learning. A gradient-boosted model is the right tool for tabular credit data.
 - Chasing leaderboard AUC. A solid model with honest evaluation beats a tuned-to-death one.
 - Kafka / real-time streaming. Possible future extension (Pub/Sub + Spark Structured Streaming),
@@ -166,6 +170,20 @@ GCP = DataCamp PMLE with Google Cloud track. PS = DataCamp Big Data with PySpark
 - [ ] Book the exam (US$200, 2h) · [ ] **Pass**
 - **Post:** certification + project retrospective.
 
+### M5 — Explanation agent *(optional extension)* · 2027-03-16 → 2027-04-12 (4 weeks)
+An agent that answers "why was this application scored this way, and what would change it?" for
+an analyst or applicant. It **explains, never decides**: the score and reason codes come from the
+model (M3); the agent only reads them through tools.
+- **Study:** [ ] revisit GCP: MLOps for Generative AI, Create Generative AI Apps on Google Cloud · [ ] Book ch. 11 (responsible AI) again
+- **Build**
+  - [ ] Tools: `get_score(application_id)`, `get_reason_codes(application_id)` (SHAP top-k), `get_feature_context(feature)` (definition + population distribution), `what_if(application_id, changes)` (re-scores via the model)
+  - [ ] Guardrails: never cites a protected attribute, never invents a reason not in the SHAP output, declines to give approval advice
+  - [ ] Human-in-the-loop: borderline scores are routed to an analyst queue instead of auto-explained
+  - [ ] Eval set: faithfulness of each explanation to the SHAP output (LLM-judge + rule checks)
+- **Done when:** eval faithfulness ≥ the threshold set at the start of M5; a demo answers 3 real applications end to end.
+- **Cost:** the GCP trial has expired by now, so M5 runs locally against batch-scored results + stored SHAP values, using a pay-per-token LLM API (Gemini via Vertex/AI Studio). No always-on endpoint.
+- **Post:** grounding an LLM on a credit model's explanations without letting it decide.
+
 ## 7. Progress
 
 | Milestone | Target end | Status |
@@ -175,6 +193,7 @@ GCP = DataCamp PMLE with Google Cloud track. PS = DataCamp Big Data with PySpark
 | M2 Production | 2027-01-25 | ☐ not started |
 | M3 Polish | 2027-02-08 | ☐ not started |
 | M4 Certification | ~2027-03-15 | ☐ not started |
+| M5 Explanation agent *(optional)* | 2027-04-12 | ☐ not started |
 
 Book: 0/11 chapters · MLE track: 0 courses · GCP track: 0/11 courses · PySpark track: not started
 
