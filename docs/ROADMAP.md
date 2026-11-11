@@ -101,12 +101,13 @@ not just trained a model."
 
 Each phase follows **Study → Build → Done when → Post**.
 Book = *Designing Machine Learning Systems*. MLE = DataCamp ML Engineer track.
-GCP = DataCamp PMLE with Google Cloud track. PS = DataCamp Big Data with PySpark track.
+GCP = DataCamp PMLE with Google Cloud track. PS = DataCamp Big Data with PySpark track
+(6 courses + 1 bonus project, ~25h — spread across M0, M1 and M3).
 
 ### M0 — Foundation · 2026-11-10 → 2026-11-30 (3 weeks, local only)
 - **Study**
   - [ ] Book ch. 1–2 (overview, ML systems design)
-  - [ ] PS: full track
+  - [ ] PS: Introduction to PySpark, Big Data Fundamentals with PySpark
   - [ ] MLE: course 1 (name to confirm), Introduction to Shell, Introduction to Docker, Introduction to MLflow *(quick reviews)*
   - [ ] MLE: MLOps Concepts
   - [ ] GCP: Build a Certification Study Guide: ACE Exam Prep, Introduction to AI and ML on Google Cloud
@@ -119,7 +120,7 @@ GCP = DataCamp PMLE with Google Cloud track. PS = DataCamp Big Data with PySpark
 
 ### M1 — End to end *(first CV-ready version)* · 2026-12-01 → 2027-01-04 (5 weeks, includes holidays)
 - **Phase 1 — Data + PySpark**
-  - Study: [ ] Book ch. 3 · [ ] MLE: ETL and ELT in Python
+  - Study: [ ] Book ch. 3 · [ ] MLE: ETL and ELT in Python · [ ] PS: Cleaning Data with PySpark, Feature Engineering with PySpark
   - Build: [ ] Spark feature jobs (local + Dataproc Serverless) · [ ] feature table in BigQuery
   - Done when: job runs on Dataproc from a single command; runtime and cost recorded.
 - **Phase 2 — Data quality**
@@ -127,7 +128,7 @@ GCP = DataCamp PMLE with Google Cloud track. PS = DataCamp Big Data with PySpark
   - Build: [ ] expectation suite on raw and feature data · [ ] failing check blocks the pipeline
   - Done when: a deliberately corrupted file makes the pipeline fail with a readable report.
 - **Phase 3 — Experimentation**
-  - Study: [ ] Book ch. 5–6 · [ ] GCP: MLOps with Vertex AI: Model Evaluation
+  - Study: [ ] Book ch. 5–6 · [ ] GCP: MLOps with Vertex AI: Model Evaluation · [ ] PS: Machine Learning with PySpark (compare Spark MLlib vs LightGBM)
   - Build: [ ] baseline + GBM · [ ] AUC/KS/calibration report · [ ] runs in Vertex Experiments
   - Done when: model choice is justified in a guide page with numbers.
 - **Phase 4 — Training pipeline**
@@ -160,7 +161,8 @@ GCP = DataCamp PMLE with Google Cloud track. PS = DataCamp Big Data with PySpark
   - Build: [ ] all infra in Terraform · [ ] SHAP reason codes in responses · [ ] fairness report · [ ] final README (architecture diagram, decisions, cost, latency)
 - **Remaining track courses**
   - [ ] GCP: MLOps for Generative AI, Create Generative AI Apps on Google Cloud
-  - [ ] MLE / GCP: any course not yet ticked (bonus projects optional)
+  - [ ] PS: Building Recommendation Engines with PySpark
+  - [ ] MLE / GCP / PS: any course not yet ticked (bonus projects optional)
 - **Done when:** a stranger can stand the whole system up from the README.
 
 ### M4 — PMLE certification · 2027-02-09 → exam by ~2027-03-15 (outside the 90-day box; mostly study, little cloud)
@@ -195,7 +197,7 @@ model (M3); the agent only reads them through tools.
 | M4 Certification | ~2027-03-15 | ☐ not started |
 | M5 Explanation agent *(optional)* | 2027-04-12 | ☐ not started |
 
-Book: 0/11 chapters · MLE track: 0 courses · GCP track: 0/11 courses · PySpark track: not started
+Book: 0/11 chapters · MLE track: 0 courses · GCP track: 0/11 courses · PySpark track: 0/6 courses
 
 ## 8. Left to the builder (decided per phase plan)
 
