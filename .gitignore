@@ -9,12 +9,21 @@ __pycache__/
 htmlcov/
 dist/
 
-# Data and credentials: never in this public repo
-data/
+# Data, model artifacts and credentials: never in this public repo.
+# `/data/` is anchored to the repo root: a bare `data/` would also hide src/credit_risk/data/.
+/data/
 *.csv
 *.parquet
+*.feather
 *.zip
+*.gz
+*.pkl
+*.joblib
 kaggle.json
+.env
+*-key.json
+*credentials*.json
+service-account*.json
 
 # Notebooks
 .ipynb_checkpoints/

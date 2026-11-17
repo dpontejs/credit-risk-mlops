@@ -28,14 +28,10 @@ jobs:
       - name: Install dependencies
         run: uv sync --locked --all-groups
 
-      - name: Lint
-        run: uv run ruff check
-
-      - name: Format
-        run: uv run ruff format --check
-
-      - name: Type check
-        run: uv run mypy src
+      # Same hooks as the local commit hook (ruff, mypy, nbstripout, large files, private keys),
+      # over every tracked file: catches commits made with --no-verify or without the hook installed.
+      - name: Pre-commit (lint, format, types, file checks)
+        run: uv run pre-commit run --all-files --show-diff-on-failure
 
       - name: Tests
         run: uv run pytest
