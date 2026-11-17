@@ -1,0 +1,24 @@
+# Python / uv
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+
+# Data and credentials: never in this public repo
+data/
+*.csv
+*.parquet
+*.zip
+kaggle.json
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Local tooling
+.omc/
+.superpowers/
