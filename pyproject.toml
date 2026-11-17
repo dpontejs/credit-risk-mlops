@@ -30,3 +30,21 @@ eda = [
     "jupyterlab>=4.6.6",
     "matplotlib>=3.11.2",
 ]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-include = ["*.ipynb"]
+
+[tool.ruff.lint]
+# E/F: pycodestyle + pyflakes · I: import order · B: bugbear · UP: modern syntax
+# SIM: simplifications · PD: pandas pitfalls · N: naming
+select = ["E", "F", "I", "B", "UP", "SIM", "PD", "N"]
+
+[tool.mypy]
+strict = true
+files = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=credit_risk --cov-report=term-missing"
