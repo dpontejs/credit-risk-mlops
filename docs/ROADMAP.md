@@ -1,6 +1,6 @@
 # credit-risk-mlops — Design & Roadmap
 
-> Status: approved · Created 2026-11-10 · Owner: Diego Ponte
+> Status: approved · Created 2026-11-10 · Rescheduled 2026-11-23 · Owner: Diego Ponte
 > This file is both the project design and the living progress tracker.
 > Progress updates: tick the boxes and update the bars at the end of each milestone.
 
@@ -34,7 +34,7 @@ not just trained a model."
 - One LinkedIn post per completed phase, tying what was built to the book chapter behind it.
 
 **Non-goals**
-- GenAI / agents **inside the 90-day box** (M0–M3). Explainability there is classical (SHAP,
+- GenAI / agents **inside the M0–M3 box**. Explainability there is classical (SHAP,
   reason codes). An explanation agent comes later, as the optional extension M5.
 - Deep learning. A gradient-boosted model is the right tool for tabular credit data.
 - Chasing leaderboard AUC. A solid model with honest evaluation beats a tuned-to-death one.
@@ -54,11 +54,14 @@ not just trained a model."
 - **Budget:** stay within the GCP free-trial credit (US$300). Budget alert from day one; endpoints
   and clusters are torn down after every demo. **The free trial expires 90 days after activation**,
   so do everything that can run locally first (PySpark local, pipeline code, tests) and activate the
-  trial only when cloud work starts in M1 (2026-12-01).
-- **Timebox: 90 days, 2026-11-10 → 2027-02-08** (M0–M3), with dated milestones below. Weekly
-  hours are unknown, so dates are targets: if a milestone slips, re-plan the next ones instead of
-  silently extending. The free trial is activated on **2026-12-01** (start of M1), so it expires
-  ~2027-03-01 — three weeks of buffer after M3.
+  trial only when cloud work starts in M1 (2026-12-29).
+- **Timebox: 2026-11-10 → 2027-03-08** (M0–M3), with dated milestones below. Originally 90 days
+  ending 2027-02-08; **rescheduled on 2026-11-23**: work paused for the end of the university
+  semester, M0 resumes on 2026-12-10 and every later milestone moved 4 weeks, keeping its length.
+  Daily availability is unpredictable, so dates are targets and tasks follow plan order: if a
+  milestone slips, re-plan the next ones instead of silently extending. The free trial is
+  activated on **2026-12-29** (start of M1), so it expires ~2027-03-29 — three weeks of buffer
+  after M3.
 - **After the trial** *(Claude's call, pending Diego's budget answer)*: nothing keeps running in the
   cloud. All resources are destroyed with Terraform; the README keeps recorded results
   (screenshots, metrics, costs) and the system can be stood up again on demand.
@@ -104,9 +107,9 @@ Book = *Designing Machine Learning Systems*. MLE = DataCamp ML Engineer track.
 GCP = DataCamp PMLE with Google Cloud track. PS = DataCamp Big Data with PySpark track
 (6 courses + 1 bonus project, ~25h — spread across M0, M1 and M3).
 
-### M0 — Foundation · 2026-11-10 → 2026-11-30 (3 weeks, local only)
+### M0 — Foundation · 2026-11-10 → 2026-12-28 (paused 2026-11-18 → 2026-12-09; local only)
 - **Study**
-  - [ ] Book ch. 1–2 (overview, ML systems design)
+  - [x] Book ch. 1–2 (overview, ML systems design)
   - [ ] PS: Introduction to PySpark, Big Data Fundamentals with PySpark
   - [ ] MLE: course 1 (name to confirm), Introduction to Shell, Introduction to Docker, Introduction to MLflow *(quick reviews)*
   - [ ] MLE: MLOps Concepts
@@ -118,7 +121,7 @@ GCP = DataCamp PMLE with Google Cloud track. PS = DataCamp Big Data with PySpark
 - **Done when:** CI is green on an empty-but-tested package; EDA explains every table and join key.
 - **Post:** why this project, and what I plan to learn.
 
-### M1 — End to end *(first CV-ready version)* · 2026-12-01 → 2027-01-04 (5 weeks, includes holidays)
+### M1 — End to end *(first CV-ready version)* · 2026-12-29 → 2027-02-01 (5 weeks)
 - **Phase 1 — Data + PySpark**
   - Study: [ ] Book ch. 3 · [ ] MLE: ETL and ELT in Python · [ ] PS: Cleaning Data with PySpark, Feature Engineering with PySpark
   - Build: [ ] Spark feature jobs (local + Dataproc Serverless) · [ ] feature table in BigQuery
@@ -145,7 +148,7 @@ GCP = DataCamp PMLE with Google Cloud track. PS = DataCamp Big Data with PySpark
   - Done when: README shows measured p95 and cost; endpoint teardown is one command.
 - **Post (one per phase):** what I built + the book chapter behind it.
 
-### M2 — Production · 2027-01-05 → 2027-01-25 (3 weeks)
+### M2 — Production · 2027-02-02 → 2027-02-22 (3 weeks)
 - **Phase 7 — Monitoring**
   - Study: [ ] Book ch. 8 · [ ] MLE: Monitoring Machine Learning Concepts, Monitoring Machine Learning in Python
   - Build: [ ] simulated production traffic with injected drift and delayed labels · [ ] drift + performance monitors · [ ] alert policies
@@ -155,7 +158,7 @@ GCP = DataCamp PMLE with Google Cloud track. PS = DataCamp Big Data with PySpark
   - Build: [ ] canary with traffic split + rollback · [ ] drift-triggered retraining · [ ] 2+ simulated incidents with runbook and post-mortem
   - Done when: each incident has a timeline, root cause, fix and prevention written up.
 
-### M3 — Polish & responsible AI · 2027-01-26 → 2027-02-08 (2 weeks)
+### M3 — Polish & responsible AI · 2027-02-23 → 2027-03-08 (2 weeks)
 - **Phase 9 — Engineering**
   - Study: [ ] Book ch. 11 · [ ] GCP: Responsible AI: Fairness & Bias, Interpretability & Transparency, Privacy & Safety
   - Build: [ ] all infra in Terraform · [ ] SHAP reason codes in responses · [ ] fairness report · [ ] final README (architecture diagram, decisions, cost, latency)
@@ -165,14 +168,14 @@ GCP = DataCamp PMLE with Google Cloud track. PS = DataCamp Big Data with PySpark
   - [ ] MLE / GCP / PS: any course not yet ticked (bonus projects optional)
 - **Done when:** a stranger can stand the whole system up from the README.
 
-### M4 — PMLE certification · 2027-02-09 → exam by ~2027-03-15 (outside the 90-day box; mostly study, little cloud)
+### M4 — PMLE certification · 2027-03-09 → exam by ~2027-04-12 (outside the M0–M3 box; mostly study, little cloud)
 - [ ] Read the official PMLE exam guide; map each section to what the project covered
 - [ ] Study the gaps not covered by the project
 - [ ] Official sample questions + practice exams
 - [ ] Book the exam (US$200, 2h) · [ ] **Pass**
 - **Post:** certification + project retrospective.
 
-### M5 — Explanation agent *(optional extension)* · 2027-03-16 → 2027-04-12 (4 weeks)
+### M5 — Explanation agent *(optional extension)* · 2027-04-13 → 2027-05-10 (4 weeks)
 An agent that answers "why was this application scored this way, and what would change it?" for
 an analyst or applicant. It **explains, never decides**: the score and reason codes come from the
 model (M3); the agent only reads them through tools.
@@ -190,14 +193,14 @@ model (M3); the agent only reads them through tools.
 
 | Milestone | Target end | Status |
 |---|---|---|
-| M0 Foundation | 2026-11-30 | ☐ not started |
-| M1 End to end | 2027-01-04 | ☐ not started |
-| M2 Production | 2027-01-25 | ☐ not started |
-| M3 Polish | 2027-02-08 | ☐ not started |
-| M4 Certification | ~2027-03-15 | ☐ not started |
-| M5 Explanation agent *(optional)* | 2027-04-12 | ☐ not started |
+| M0 Foundation | 2026-12-28 | ◐ in progress (paused until 2026-12-10) |
+| M1 End to end | 2027-02-01 | ☐ not started |
+| M2 Production | 2027-02-22 | ☐ not started |
+| M3 Polish | 2027-03-08 | ☐ not started |
+| M4 Certification | ~2027-04-12 | ☐ not started |
+| M5 Explanation agent *(optional)* | 2027-05-10 | ☐ not started |
 
-Book: 0/11 chapters · MLE track: 0 courses · GCP track: 0/11 courses · PySpark track: 0/6 courses
+Book: 2/11 chapters · MLE track: 0 courses · GCP track: 0/11 courses · PySpark track: 0/6 courses
 
 ## 8. Left to the builder (decided per phase plan)
 
