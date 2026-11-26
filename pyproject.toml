@@ -1,7 +1,7 @@
 [project]
 name = "credit-risk"
 version = "0.1.0"
-description = "Credit default risk ML system on GCP: PySpark features, Vertex AI pipelines, serving and monitoring."
+description = "Credit default risk ML system on AWS: PySpark features, SageMaker pipelines, serving and monitoring."
 readme = "README.md"
 authors = [
     { name = "Diego Ponte", email = "dpontejs@gmail.com" }

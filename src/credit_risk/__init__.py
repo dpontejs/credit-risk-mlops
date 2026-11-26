@@ -1,4 +1,4 @@
-"""Credit default risk system: features, training, serving and monitoring on GCP."""
+"""Credit default risk system: features, training, serving and monitoring on AWS."""
 
 from importlib.metadata import version
 
