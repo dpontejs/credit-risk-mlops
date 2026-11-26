@@ -118,11 +118,13 @@ The DataCamp PMLE with Google Cloud track was dropped with the move to AWS.
 
 ### MC — AWS ML Engineer Associate (MLA-C02 beta) · 2026-11-26 → exam 2027-01-08
 Beta: code ME1-C02, US$75, 85 questions / 170 min (+30 min with the ESL accommodation), no
-retake during the beta, last bookable day 2027-01-13. Domains: data preparation 28%, model and
+retake during the beta, last bookable day 2027-01-13 (official). The standard MLA-C02 opens in all
+languages on 2027-01-14 (US$150). Domains: data preparation 28%, model and
 foundation-model development 24%, deployment and orchestration 24%, operations, monitoring and
 security 24%. Project and DataCamp courses are paused until the exam; the book continues.
 - **Phase 0 — Diagnosis** (until 2026-12-09, light, during the semester)
-  - [ ] Request the ESL +30 min accommodation, then book ME1-C02 for 2027-01-08
+  - [x] ESL +30 min accommodation approved (2026-11-26, never expires)
+  - [ ] Book ME1-C02 for 2027-01-08 (on 2026-12-01, so the payment falls on the next card bill)
   - [ ] Read the official MLA-C02 exam guide; take SB's free official practice questions cold
   - [ ] SB Exam Prep Plan (ML Engineer Associate), in short sessions
   - [ ] Book ch. 7–9 (deployment, data distribution shifts, continual learning)
