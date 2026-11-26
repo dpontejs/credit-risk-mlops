@@ -163,10 +163,10 @@ Sections (each ends with a 1–3 line markdown conclusion):
 
 **Learn:** AWS account and region scope, IAM roles vs users, GitHub OIDC federation, and why Terraform state lives in its own bucket.
 
-**Files:** create `docs/guide/02-aws-layout.md`. No cloud resources: the account is created in M1 (credit clock).
+**Files:** create `docs/guide/02-aws-layout.md`. No cloud resources yet: the account exists on the Free plan, resources start in M1.
 
 Decisions (write them down with the reason for each and the alternative that was rejected):
-- [ ] **One account** on the Paid plan, region `us-east-1` (widest SageMaker/Bedrock coverage). Rejected: dev/prod accounts via AWS Organizations (more setup and cost for a solo project; environments are separated by name prefix + tags).
+- [ ] **One account**: the existing new-AWS-experience project, upgraded to the Paid plan in M1; Region `us-east-2` (the project is locked to it). Check which services in the plan (SageMaker AI, EMR Serverless, Glue, Athena) are supported or need "advanced features" (`aws freetier get-account-plan-state` + the supported-services lists). Rejected: dev/prod accounts via AWS Organizations (more setup and cost for a solo project; environments are separated by name prefix + tags).
 - [ ] **S3 buckets:** `<prefix>-tfstate` (versioned, Terraform native S3 locking, created by `infra/bootstrap` with local state), `<prefix>-data` (`raw/`, `features/`), `<prefix>-artifacts` (pipeline outputs, models).
 - [ ] **Glue Data Catalog databases** (queried with Athena): `credit_raw`, `credit_features`, `credit_monitoring`.
 - [ ] **IAM roles, no IAM users or access keys:** `sagemaker-execution`, `emr-serverless-job`, `github-actions` (assumed through GitHub OIDC, scoped to this repo).

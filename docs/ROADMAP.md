@@ -62,8 +62,10 @@ but does not replace real SageMaker/EMR runs.
   console activities). The Free plan blocks EMR/Athena and expires after 6 months, so the project
   uses the **Paid plan**: credits still apply, and charges start silently when they run out.
   AWS Budgets alerts + Cost Anomaly Detection from day one; endpoints and jobs are torn down
-  after every demo. The account is created only when cloud work starts in M1 (2027-01-25), so
-  the credit clock does not run during local work.
+  after every demo. The account already exists: a project in the new AWS experience, created on
+  2026-11-26 on the **Free plan** (US$100 credits, plan expires 2027-05-26; nothing is charged
+  while on it). It is upgraded to the Paid plan at M1 start, with a **spend limit** in AWS
+  Settings (pauses the project when exceeded) on top of Budgets.
 - **Timebox:** certification sprint 2026-11-26 → 2027-01-08 (exam), then the project
   2027-01-11 → 2027-04-04 (M0–M3). History: planned as 90 days ending 2027-02-08; paused on
   2026-11-23 for the end of the semester; on 2026-11-26 the AWS exam took priority and the
@@ -83,7 +85,7 @@ but does not replace real SageMaker/EMR runs.
 | Topic | Decision |
 |---|---|
 | Domain / data | Credit default risk, **Home Credit Default Risk** (Kaggle): 7 relational tables, `bureau_balance` ~27M rows, `installments_payments` ~13.6M — large enough to justify Spark. |
-| Cloud | **AWS** (SageMaker AI, EMR Serverless, S3, Glue Data Catalog + Athena, CloudWatch). Changed from GCP on 2026-11-26, before any cloud resource existed. |
+| Cloud | **AWS** (SageMaker AI, EMR Serverless, S3, Glue Data Catalog + Athena, CloudWatch). Changed from GCP on 2026-11-26, before any cloud resource existed. Region **us-east-2**: projects in the new AWS experience are locked to one Region, and some services may need "advanced features" activated (checked in the M0 layout task). |
 | Big data | **PySpark**, developed locally, run on EMR Serverless. |
 | Model | Gradient boosting (LightGBM or XGBoost) with a logistic-regression baseline. |
 | IaC / CI | Terraform + GitHub Actions. |
@@ -138,7 +140,7 @@ security 24%. Project and DataCamp courses are paused until the exam; the book c
   - [ ] SageMaker and Bedrock FAQs; weak spots from the diagnosis
   - [ ] Tutorials Dojo practice exam 1 + review every mistake
 - **Phase 3 — Practice exams** (2027-01-02 → 2027-01-07)
-  - [ ] SB subscription for 1 month: official practice exam + labs
+  - [ ] SB official practice exam + labs (annual subscription free via AWS Student Rewards, active until 2026-11-26 → 2027-11-26)
   - [ ] Tutorials Dojo practice exam 2; target > 80% before the exam
 - **Exam:** [ ] 2027-01-08 (reschedule window up to 2027-01-13)
 - **Post:** the certification + how the project will use each domain.
@@ -157,7 +159,7 @@ security 24%. Project and DataCamp courses are paused until the exam; the book c
 - **Post:** why this project, and what I plan to learn.
 
 ### M1 — End to end *(first CV-ready version)* · 2027-01-25 → 2027-02-28 (5 weeks)
-- **Setup:** [ ] AWS account (Paid plan) + Budgets + Cost Anomaly Detection + Terraform state bucket + GitHub OIDC role
+- **Setup:** [ ] Upgrade the AWS project to the Paid plan + spend limit + Budgets + Cost Anomaly Detection + Terraform state bucket + GitHub OIDC role
 - **Phase 1 — Data + PySpark**
   - Study: [ ] Book ch. 3 · [ ] MLE: ETL and ELT in Python · [ ] PS: Cleaning Data with PySpark, Feature Engineering with PySpark
   - Build: [ ] Spark feature jobs (local + EMR Serverless) · [ ] feature table in S3 + Glue Data Catalog, queryable in Athena
