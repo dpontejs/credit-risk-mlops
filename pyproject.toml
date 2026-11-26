@@ -1,0 +1,50 @@
+[project]
+name = "credit-risk"
+version = "0.1.0"
+description = "Credit default risk ML system on AWS: PySpark features, SageMaker pipelines, serving and monitoring."
+readme = "README.md"
+authors = [
+    { name = "Diego Ponte", email = "dpontejs@gmail.com" }
+]
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "pandas>=3.1.1",
+    "pyarrow>=26.0.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.6,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "mypy>=2.4.1",
+    "nbstripout>=0.9.1",
+    "pandas-stubs>=3.1.0.261029",
+    "pre-commit>=4.7.0",
+    "pytest>=9.2.0",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.17.5",
+]
+eda = [
+    "jupyterlab>=4.6.6",
+    "matplotlib>=3.11.2",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-include = ["*.ipynb"]
+
+[tool.ruff.lint]
+# E/F: pycodestyle + pyflakes · I: import order · B: bugbear · UP: modern syntax
+# SIM: simplifications · PD: pandas pitfalls · N: naming
+select = ["E", "F", "I", "B", "UP", "SIM", "PD", "N"]
+
+[tool.mypy]
+strict = true
+files = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=credit_risk --cov-report=term-missing"
