@@ -5,7 +5,7 @@
 > Work in order; there are no per-task dates (see ROADMAP §3: dates are milestone targets only).
 
 **Goal:** a tested, CI-checked Python package; an EDA that explains every Home Credit table and
-join key; and a written GCP project layout that M1 implements with Terraform.
+join key; and a written AWS account layout that M1 implements with Terraform.
 
 **Architecture:** `src/` layout package `credit_risk`, managed by uv. M0 code is small on purpose:
 a table registry (names, grains, keys) plus key-integrity checks. M1's Spark jobs reuse both, and
@@ -32,7 +32,7 @@ This is a learning project: speed matters less than Diego understanding every li
 - Code, docs, guide pages and notebooks in English. Commit messages in English, conventional commits without scope (`feat: ...`), no co-author lines.
 - Public repo: no data, no secrets, no `kaggle.json` in git; `data/` is gitignored.
 - Notebooks are committed **without outputs** (nbstripout); findings go into the guide page.
-- Python pinned to 3.12 (`.python-version`); re-check against the Dataproc Serverless runtime in M1.
+- Python pinned to 3.12 (`.python-version`); re-check against the EMR Serverless runtime in M1 (its default Python may be older).
 - One PR per block below (A, B, C). "Done" = pre-commit + CI green.
 
 ## Review focus
@@ -157,22 +157,23 @@ Sections (each ends with a 1–3 line markdown conclusion):
       plus exercises. Bonus exercise once PySpark course 1 is done: redo the key checks in PySpark local and compare runtime.
 - [ ] PR 2 merged with CI green.
 
-## Block C — GCP project layout (PR 3, document only)
+## Block C — AWS account layout (PR 3, document only)
 
 ### Task 8: write the layout that M1 will implement
 
-**Learn:** GCP resource hierarchy, IAM with service accounts, WIF, and why Terraform state lives in its own bucket.
+**Learn:** AWS account and region scope, IAM roles vs users, GitHub OIDC federation, and why Terraform state lives in its own bucket.
 
-**Files:** create `docs/guide/02-gcp-layout.md`. No cloud resources: the trial is activated in M1.
+**Files:** create `docs/guide/02-aws-layout.md`. No cloud resources yet: the account exists on the Free plan, resources start in M1.
 
 Decisions (write them down with the reason for each and the alternative that was rejected):
-- [ ] **One project** `credit-risk-mlops-<suffix>`, region `us-central1`. Rejected: dev/prod projects (the trial has a single billing account and a 90-day clock; environments are separated by name prefix + labels).
-- [ ] **Buckets:** `<project>-tfstate` (versioned, created by `infra/bootstrap` with local state), `<project>-data` (`raw/`, `features/`), `<project>-artifacts` (pipeline root, models).
-- [ ] **BigQuery datasets:** `credit_raw`, `credit_features`, `credit_monitoring`.
-- [ ] **Service accounts:** `sa-pipelines` (Vertex + Dataproc), `sa-serving` (endpoint), `sa-ci` (GitHub via Workload Identity Federation, no keys).
-- [ ] **Labels** on every resource: `app=credit-risk-mlops`, `phase=<n>`, `ephemeral=true|false` (teardown finds what to delete).
-- [ ] **Budget:** US$300 budget with alerts at 25/50/75/90% + email; teardown checklist after every demo.
-- [ ] **Terraform layout:** `infra/bootstrap/` (state bucket, APIs) → `infra/main/` (GCS backend, everything else).
+- [ ] **One account**: the existing new-AWS-experience project, upgraded to the Paid plan in M1; Region `us-east-2` (the project is locked to it). Check which services in the plan (SageMaker AI, EMR Serverless, Glue, Athena) are supported or need "advanced features" (`aws freetier get-account-plan-state` + the supported-services lists). Rejected: dev/prod accounts via AWS Organizations (more setup and cost for a solo project; environments are separated by name prefix + tags).
+- [ ] **S3 buckets:** `<prefix>-tfstate` (versioned, Terraform native S3 locking, created by `infra/bootstrap` with local state), `<prefix>-data` (`raw/`, `features/`), `<prefix>-artifacts` (pipeline outputs, models).
+- [ ] **Glue Data Catalog databases** (queried with Athena): `credit_raw`, `credit_features`, `credit_monitoring`.
+- [ ] **IAM roles, no IAM users or access keys:** `sagemaker-execution`, `emr-serverless-job`, `github-actions` (assumed through GitHub OIDC, scoped to this repo).
+- [ ] **Tags** on every resource: `app=credit-risk-mlops`, `phase=<n>`, `ephemeral=true|false` (teardown finds what to delete).
+- [ ] **Cost guardrails:** AWS Budgets (monthly budget with alerts at 25/50/75/90% + email), Cost Anomaly Detection, teardown checklist after every demo.
+- [ ] **Terraform layout:** `infra/bootstrap/` (state bucket) → `infra/main/` (S3 backend, everything else).
+- [ ] **AWS Emulator:** where it fits (S3 I/O and resource-definition tests in CI) and where it does not (real SageMaker/EMR runs, IAM policy checks).
 - [ ] PR 3 merged.
 
 ### Task 9: close M0
